@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 .issue-grid {
-    @apply flex flex-col;
+  @apply flex flex-col;
 }
 
 @screen md {
-    .issue-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        grid-gap: theme('padding.6');
-    }
+  .issue-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-gap: theme("padding.6");
+  }
 }

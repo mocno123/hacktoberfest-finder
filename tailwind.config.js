@@ -3,15 +3,15 @@ module.exports = {
     // removeDeprecatedGapUtilities: true,
     // purgeLayersByDefault: true,
   },
-  purge: [],
+  purge: ["./src/**/*.html", "./src/**/*.vue", "./src/**/*.jsx"],
   theme: {
     extend: {
-        colors: {
-            'hacktoberfest-blue': '#0069ff',
-            'hacktoberfest-orange': '#9c4668'
-        }
+      colors: {
+        "hacktoberfest-blue": "#0069ff",
+        "hacktoberfest-orange": "#9c4668",
+      },
     },
   },
   variants: {},
   plugins: [],
-}
+};
