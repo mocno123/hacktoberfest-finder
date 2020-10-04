@@ -1,5 +1,5 @@
 module.exports = {
-  purge: ['./src/**/*.html', './src/**/*.vue', './src/**/*.jsx'],
+  purge: ['index.html', './src/css/*.css', './src/js/*.js'],
   theme: {
     extend: {
       colors: {
@@ -10,4 +10,4 @@ module.exports = {
   },
   variants: {},
   plugins: [],
-};
+}
