@@ -9,3 +9,4 @@ mix-manifest.json
 css/*.css
 js/*.js
 mix-manifest.json
+js/app.js.LICENSE.txt
