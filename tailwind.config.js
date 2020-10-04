@@ -4,7 +4,7 @@ module.exports = {
     extend: {
       colors: {
         'hacktoberfest-blue': '#0069ff',
-        'hacktoberfest-orange': '#9c4668"',
+        'hacktoberfest-orange': '#9c4668',
       },
     },
   },
