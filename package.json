@@ -8,7 +8,7 @@
   "dependencies": {
     "cross-env": "7.0.2",
     "css-loader": "^4.3.0",
-    "laravel-mix": "6.0.0-alpha.1",
+    "laravel-mix": "v6.0.0-beta.2",
     "tailwindcss": "^1.8.10",
     "vue": "^2.6.12",
     "vue-template-compiler": "^2.6.12"
