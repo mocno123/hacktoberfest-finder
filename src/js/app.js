@@ -14,7 +14,7 @@ new Vue({
       isFilterToggled: false,
       isFetching: false,
       showViewMore: false,
-      noReplyOnly: false,
+
       selectedLanguage: "any",
       selectedSort: "newest",
     };
@@ -22,8 +22,8 @@ new Vue({
 
   methods: {
     loadIssues() {
-      console.log(this.selectedLanguage, "noreply-", this.noReplyOnly);
       this.isFetching = true;
+
       fetch("https://api.github.com/emojis")
         .then((response) => response.json())
         .then((emojisResponse) => (this.emojis = emojisResponse))
@@ -32,9 +32,9 @@ new Vue({
             `https://api.github.com/search/issues?page=${
               this.page
             }&q=language:${
-              this.filterLanguage
-            }+label:hacktoberfest+type:issue+state:open+${this.noReplyOnly &&
-              "comments:0"}`
+              this.selectedLanguage
+            }+label:hacktoberfest+type:issue+state:open+${this.selectedSort ===
+              "noReplies" && "comments:0"}+created:2020`
           )
         )
         .then((response) => response.json())
@@ -58,13 +58,9 @@ new Vue({
               ).toLocaleTimeString()}`,
             })
           );
-          if (this.selectedLanguage !== "any") {
-            this.results = [...newResults];
-          } else if (this.noReplyOnly === true) {
-            this.results = [...newResults];
-          } else {
-            this.results = [...this.results, ...newResults];
-          }
+
+          this.results = [...this.results, ...newResults];
+
           this.page = this.page + 1;
           this.showViewMore = true;
           this.isFetching = false;
@@ -79,31 +75,7 @@ new Vue({
           this.isFetching = false;
         });
     },
-    invertColor(hex, bw = 1) {
-      if (hex.indexOf("#") === 0) {
-        hex = hex.slice(1);
-      }
-      // convert 3-digit hex to 6-digits.
-      if (hex.length === 3) {
-        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-      }
-      if (hex.length !== 6) {
-        throw new Error("Invalid HEX color.");
-      }
-      var r = parseInt(hex.slice(0, 2), 16),
-        g = parseInt(hex.slice(2, 4), 16),
-        b = parseInt(hex.slice(4, 6), 16);
-      if (bw) {
-        // http://stackoverflow.com/a/3943023/112731
-        return r * 0.299 + g * 0.587 + b * 0.114 > 186 ? "#000000" : "#FFFFFF";
-      }
-      // invert color components
-      r = (255 - r).toString(16);
-      g = (255 - g).toString(16);
-      b = (255 - b).toString(16);
-      // pad each with zeros and return
-      return "#" + padZero(r) + padZero(g) + padZero(b);
-    },
+
     insertEmojis(label) {
       for (let [emoji, url] of Object.entries(this.emojis)) {
         label = label.replace(`:${emoji}:`, `<img src="${url}" class="h-4" />`);
@@ -141,12 +113,6 @@ new Vue({
       this.isFilterToggled = !this.isFilterToggled;
     },
 
-    toggleNoReplyFilter(value) {
-      console.log(value);
-      this.noReplyOnly = value;
-      this.applyFilter();
-    },
-
     resetTopLanguages() {
       this.topLanguages = toplangs;
     },
@@ -163,18 +129,14 @@ new Vue({
     },
   },
 
-  computed: {
-    filterLanguage() {
-      console.log(this.selectedLanguage);
-      return this.selectedLanguage
-        .split("+")
-        .join("%2B")
-        .split("#")
-        .join("%23")
-        .toLowerCase();
+  watch: {
+    selectedLanguage() {
+      this.applyFilter();
+    },
+    selectedSort() {
+      this.applyFilter();
     },
   },
-
   mounted() {
     this.loadIssues();
     document.addEventListener("click", this.onClickOutside);
