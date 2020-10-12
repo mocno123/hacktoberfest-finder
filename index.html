@@ -31,21 +31,25 @@
 <body class="bg-secondary font-space">
     <div id="app">
         <header class="bg-gray-200 px-8">
-            <div class="py-8">
+            <a class="banner" href="/hacktoberfest-update">
+                <span class="banner-btn">Enter now!</span>
+                <span>We're giving a pair of <a href="https://twitter.com/digitalocean">@digitalocean</a> shark slippers to a Hacktoberfest contributor!</span>
+            </a>
+            <div class="py-8" style="padding-top: 5rem">
                 <div class="container mx-auto flex items-center justify-between">
                     <a href="/">
                         <img
-                            class="h-24"
-                            src="/img/hacktoberfest.svg"
-                            alt="Hacktoberfest Icon"
+                        class="h-24"
+                        src="/img/hacktoberfest.svg"
+                        alt="Hacktoberfest Icon"
                         >
                     </a>
 
                     <div>
                         <a
-                            class="bg-hacktoberfest-blue hover:bg-hacktoberfest-orange text-white rounded-full px-6 py-3 uppercase font-medium"
-                            href="https://github.com/damcclean/hacktoberfest-finder" 
-                            target="_blank"
+                        class="bg-hacktoberfest-blue hover:bg-hacktoberfest-orange text-white rounded-full px-6 py-3 uppercase font-medium"
+                        href="https://github.com/damcclean/hacktoberfest-finder" 
+                        target="_blank"
                         >Contribute</a>
                     </div>
                 </div>
@@ -58,104 +62,104 @@
                     <div class="w-full bg-white rounded-lg px-4 py-3 flex">
                         <div class="relative w-1/2 pr-2 border-r border-gray-200">
                             <select
-                                v-model="selectedLanguage"
-                                class="block appearance-none w-full bg-white px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+                            v-model="selectedLanguage"
+                            class="block appearance-none w-full bg-white px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
                             >
-                                <option
-                                    selected
-                                    value="any"
-                                >Any language</option>
-                                <option
-                                    v-for="language in languages"
-                                    :key="language"
-                                    v-text="language"
-                                    :value="language"
-                                ></option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                            </div>
-                        </div>
-
-                        <div class="relative w-1/2 pl-2">
-                            <select
-                                v-model="selectedSort"
-                                class="block appearance-none w-full bg-white px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
-                            >
-                                <option
-                                    selected
-                                    value="newest"
-                                >Newest</option>
-                                <option
-                                    selected
-                                    value="noReplies"
-                                >No Replies</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                            </div>
+                            <option
+                            selected
+                            value="any"
+                            >Any language</option>
+                            <option
+                            v-for="language in languages"
+                            :key="language"
+                            v-text="language"
+                            :value="language"
+                            ></option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                         </div>
                     </div>
-                </form>
-            </div>
-        </header>
 
-        <main>
-            <div class="container mx-auto py-12 px-8">
-                <div class="issue-grid">
-                    <div 
-                        v-for="result in results" 
-                        class="border border-gray-200 p-4 shadow-sm" 
-                        :title="result.title"
-                    >
-                        <a target="_blank" :href="result.html_url">
-                            <h2 class="text-lg font-semibold mb-2" v-text="result.title"></h2>
-                        </a>
-                        <a target="_blank" :href="result.repository_url">
-                            <h3 class="text-sm text-teal-600 hover:text-hacktoberfest-orange font-medium mb-4" v-text="result.repoTitle"></h3>
-                        </a>
-
-                        <p class="text-sm text-gray-700">{{ result.comments }} comments</p>
-                    </div>
-                    
-                    <div
-                        v-if="isFetching"
-                        v-for="index in 15" :key="index"
-                        class="border border-gray-200 p-4 shadow-sm animate-pulse"
-                    >
-                        <div class="h-6 bg-gray-400 rounded mb-3"></div>
-                        <div class="h-4 bg-gray-400 rounded mb-4 w-2/4"></div>
-                        <div class="h-4 bg-gray-400 rounded w-1/4"></div>
+                    <div class="relative w-1/2 pl-2">
+                        <select
+                        v-model="selectedSort"
+                        class="block appearance-none w-full bg-white px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+                        >
+                        <option
+                        selected
+                        value="newest"
+                        >Newest</option>
+                        <option
+                        selected
+                        value="noReplies"
+                        >No Replies</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                     </div>
                 </div>
-
-                <div v-if="showViewMore" class="flex items-center justify-center my-6">
-                    <button
-                        class="bg-hacktoberfest-blue hover:bg-hacktoberfest-orange text-white rounded-full px-6 py-3 uppercase font-medium"
-                        :class="{ 'opacity-50 cursor-not-allowed hover:hacktoberfest-blue': isFetching }"
-                        :disabled="isFetching" @click="loadIssues"
-                    >
-                        {{ isFetching ? 'Loading...' : 'Load More' }}
-                    </button>
-                </div>
             </div>
-            <div class="fixed bottom-0 mb-8 right-0 mr-8" @click="scrollToTop">
-                <div class="bg-hacktoberfest-blue p-3 rounded-full cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1.5em" height="1.5em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20">
-                        <path d="M15 14l-5-5l-5 5l-2-1l7-7l7 7z" fill="#ffffff" />
-                    </svg>
-                </div>
-            </div>
-        </main>
-
-        <footer class="bg-gray-200 py-6 px-8">
-            <div class="container mx-auto">
-                <p class="text-sm">Hacktoberfest Finder is not assosiated with DigitalOcean, Intel or DEV. It's an unofficial project maintained by <a class="font-medium text-hacktoberfest-blue" href="https://duncanm.dev?ref=hacktoberfest">Duncan McClean</a> with help of <a class="font-medium text-hacktoberfest-blue" href="https://github.com/damcclean/hacktoberfest-finder/blob/master/CONTRIBUTORS.md">open source contributors</a>.</p>
-            </div>
-        </footer>
+        </form>
     </div>
-    
-    <script src="/js/app.js"></script>    
+</header>
+
+<main>
+    <div class="container mx-auto py-12 px-8">
+        <div class="issue-grid">
+            <div 
+            v-for="result in results" 
+            class="border border-gray-200 p-4 shadow-sm" 
+            :title="result.title"
+            >
+            <a target="_blank" :href="result.html_url">
+                <h2 class="text-lg font-semibold mb-2" v-text="result.title"></h2>
+            </a>
+            <a target="_blank" :href="result.repository_url">
+                <h3 class="text-sm text-teal-600 hover:text-hacktoberfest-orange font-medium mb-4" v-text="result.repoTitle"></h3>
+            </a>
+
+            <p class="text-sm text-gray-700">{{ result.comments }} comments</p>
+        </div>
+
+        <div
+        v-if="isFetching"
+        v-for="index in 15" :key="index"
+        class="border border-gray-200 p-4 shadow-sm animate-pulse"
+        >
+        <div class="h-6 bg-gray-400 rounded mb-3"></div>
+        <div class="h-4 bg-gray-400 rounded mb-4 w-2/4"></div>
+        <div class="h-4 bg-gray-400 rounded w-1/4"></div>
+    </div>
+</div>
+
+<div v-if="showViewMore" class="flex items-center justify-center my-6">
+    <button
+    class="bg-hacktoberfest-blue hover:bg-hacktoberfest-orange text-white rounded-full px-6 py-3 uppercase font-medium"
+    :class="{ 'opacity-50 cursor-not-allowed hover:hacktoberfest-blue': isFetching }"
+    :disabled="isFetching" @click="loadIssues"
+    >
+    {{ isFetching ? 'Loading...' : 'Load More' }}
+</button>
+</div>
+</div>
+<div class="fixed bottom-0 mb-8 right-0 mr-8" @click="scrollToTop">
+    <div class="bg-hacktoberfest-blue p-3 rounded-full cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1.5em" height="1.5em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20">
+            <path d="M15 14l-5-5l-5 5l-2-1l7-7l7 7z" fill="#ffffff" />
+        </svg>
+    </div>
+</div>
+</main>
+
+<footer class="bg-gray-200 py-6 px-8">
+    <div class="container mx-auto">
+        <p class="text-sm">Hacktoberfest Finder is not assosiated with DigitalOcean, Intel or DEV. It's an unofficial project maintained by <a class="font-medium text-hacktoberfest-blue" href="https://duncanm.dev?ref=hacktoberfest">Duncan McClean</a> with help of <a class="font-medium text-hacktoberfest-blue" href="https://github.com/damcclean/hacktoberfest-finder/blob/master/CONTRIBUTORS.md">open source contributors</a>.</p>
+    </div>
+</footer>
+</div>
+
+<script src="/js/app.js"></script>    
 </body>
 
 </html>

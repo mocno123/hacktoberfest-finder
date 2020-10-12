@@ -3,13 +3,35 @@
 @tailwind utilities;
 
 .issue-grid {
-    @apply flex flex-col;
+	@apply flex flex-col;
 }
 
 @screen md {
-    .issue-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        grid-gap: theme('padding.6');
-    }
+	.issue-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-gap: theme('padding.6');
+	}
+}
+
+.banner {
+	position:absolute;
+	z-index:1;
+	left:0px;
+	top:0px;
+	width:100%;
+	display:flex;
+	align-items:center;
+	padding:10px 55px;
+	color:#1d2c4e;
+	background-color:#89bbd4;
+	font-size:0.875rem
+}
+
+.banner-btn {
+	text-transform: uppercase;
+	margin: 0em 0.5em;
+	padding: 0.3rem;
+	background: white;
+	border-radius: 0.3em;
 }
